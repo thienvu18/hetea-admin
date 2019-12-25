@@ -39,6 +39,10 @@ const userSchema = new Schema(
     picture: {
       type: String,
       trim: true
+    },
+    isLock: {
+      type: Boolean,
+      default: false
     }
   },
   {
@@ -80,7 +84,7 @@ userSchema.pre("save", function(next) {
 userSchema.methods = {
   view(full) {
     let view = {};
-    let fields = ["id", "name", "picture", "type", "role", "email"];
+    let fields = ["id", "name", "picture", "type", "role", "email", "isLock"];
 
     if (full) {
       fields = [...fields, "createdAt"];
@@ -104,7 +108,7 @@ userSchema.statics = {
   roles
 };
 
-userSchema.plugin(mongooseKeywords, { paths: ["email", "name"] });
+userSchema.plugin(mongooseKeywords, { paths: ["email", "name", "isLock"] });
 
 const model = mongoose.model("User", userSchema);
 

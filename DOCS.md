@@ -179,6 +179,7 @@
 | name			| String			| **optional** <p>User's name.</p>							|
 | picture			| String			| **optional** <p>User's picture.</p>							|
 | role			| String			| **optional** <p>User's role.</p>							|
+| isLock			| Boolean			| **optional** <p>Account's lock status.</p>							|
 
 ## Delete user
 
@@ -263,5 +264,6 @@
 | access_token			| String			|  <p>User access_token.</p>							|
 | name			| String			| **optional** <p>User's name.</p>							|
 | picture			| String			| **optional** <p>User's picture.</p>							|
+| isLock			| Boolean			| **optional** <p>Account's lock status.</p>							|
 
 
