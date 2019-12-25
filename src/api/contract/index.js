@@ -44,11 +44,11 @@ router.get("/:id", token({ required: true, roles: ["admin"] }), show);
  * @apiParam {String} access_token admin access token.
  * @apiParam {String} tutor Contract's tutor.
  * @apiParam {String} tutee Contract's tutee.
- * @apiParam [Number] hours Contract's hours.
- * @apiParam [Number] price Contract's price.
- * @apiParam [Date] startDate Contract's startDate.
- * @apiParam [Date] endDate Contract's endDate.
- * @apiParam [String=created,confirm,done] status Contract's status.
+ * @apiParam {Number} [hours] Contract's hours.
+ * @apiParam {Number} [price] Contract's price.
+ * @apiParam {Date} [startDate] Contract's startDate.
+ * @apiParam {Date} [endDate] Contract's endDate.
+ * @apiParam {String=created,confirm,done} [status=created] Contract's status.
  * @apiSuccess {Object} contract Contract's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Contract not found.
