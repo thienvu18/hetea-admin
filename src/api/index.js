@@ -4,6 +4,7 @@ import auth from './auth'
 import passwordReset from './password-reset'
 import skill from './skill'
 import contract from './contract'
+import statistic from './statistic'
 
 const router = new Router()
 
@@ -35,5 +36,6 @@ router.use('/auth', auth)
 router.use('/password-resets', passwordReset)
 router.use('/skills', skill)
 router.use('/contracts', contract)
+router.use('/statistics', statistic)
 
 export default router

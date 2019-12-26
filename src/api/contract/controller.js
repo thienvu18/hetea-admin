@@ -1,35 +1,44 @@
-import { success, notFound } from '../../services/response/'
-import { Contract } from '.'
+import { success, notFound } from "../../services/response/";
+import { Contract } from ".";
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Contract.count(query)
-    .then(count => Contract.find(query, select, cursor)
-      .then((contracts) => ({
+    .then(count =>
+      Contract.find(query, select, cursor).then(contracts => ({
         count,
-        rows: contracts.map((contract) => contract.view())
+        rows: contracts.map(contract => contract.view())
       }))
     )
     .then(success(res))
-    .catch(next)
+    .catch(next);
 
 export const show = ({ params }, res, next) =>
   Contract.findById(params.id)
     .then(notFound(res))
-    .then((contract) => contract ? contract.view() : null)
+    .then(contract => (contract ? contract.view() : null))
     .then(success(res))
-    .catch(next)
+    .catch(next);
 
 export const update = ({ bodymen: { body }, params }, res, next) =>
   Contract.findById(params.id)
     .then(notFound(res))
-    .then((contract) => contract ? Object.assign(contract, body).save() : null)
-    .then((contract) => contract ? contract.view(true) : null)
+    .then(contract => {
+      if (contract) {
+        let paidDate = null;
+        if (body.status === "done") {
+          paidDate = Date.now();
+        }
+        return Object.assign(contract, body, { paidDate: paidDate }).save();
+      }
+      return null;
+    })
+    .then(contract => (contract ? contract.view(true) : null))
     .then(success(res))
-    .catch(next)
+    .catch(next);
 
 export const destroy = ({ params }, res, next) =>
   Contract.findById(params.id)
     .then(notFound(res))
-    .then((contract) => contract ? contract.remove() : null)
+    .then(contract => (contract ? contract.remove() : null))
     .then(success(res, 204))
-    .catch(next)
+    .catch(next);

@@ -48,7 +48,7 @@ router.get("/:id", token({ required: true, roles: ["admin"] }), show);
  * @apiParam {Number} [price] Contract's price.
  * @apiParam {Date} [startDate] Contract's startDate.
  * @apiParam {Date} [endDate] Contract's endDate.
- * @apiParam {String=created,confirm,done} [status=created] Contract's status.
+ * @apiParam {String=created,confirmed,done} [status=created] Contract's status.
  * @apiSuccess {Object} contract Contract's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Contract not found.

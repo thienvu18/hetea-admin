@@ -5,6 +5,12 @@
 - [Auth](#auth)
 	- [Authenticate](#authenticate)
 	
+- [Contract](#contract)
+	- [Delete contract](#delete-contract)
+	- [Retrieve contract](#retrieve-contract)
+	- [Retrieve contracts](#retrieve-contracts)
+	- [Update contract](#update-contract)
+	
 - [PasswordReset](#passwordreset)
 	- [Send email](#send-email)
 	- [Submit password](#submit-password)
@@ -16,6 +22,9 @@
 	- [Retrieve skill](#retrieve-skill)
 	- [Retrieve skills](#retrieve-skills)
 	- [Update skill](#update-skill)
+	
+- [Statistic](#statistic)
+	- [Retrieve revenue](#retrieve-revenue)
 	
 - [User](#user)
 	- [Create user](#create-user)
@@ -47,6 +56,72 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>Master access_token.</p>							|
+
+# Contract
+
+## Delete contract
+
+
+
+	DELETE /contracts/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve contract
+
+
+
+	GET /contracts/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve contracts
+
+
+
+	GET /contracts
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update contract
+
+
+
+	PUT /contracts/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| tutor			| String			|  <p>Contract's tutor.</p>							|
+| tutee			| String			|  <p>Contract's tutee.</p>							|
+| hours			| Number			| **optional** <p>Contract's hours.</p>							|
+| price			| Number			| **optional** <p>Contract's price.</p>							|
+| startDate			| Date			| **optional** <p>Contract's startDate.</p>							|
+| endDate			| Date			| **optional** <p>Contract's endDate.</p>							|
+| status			| String			| **optional** <p>Contract's status.</p>							|
 
 # PasswordReset
 
@@ -159,6 +234,24 @@
 | access_token			| String			|  <p>admin access token.</p>							|
 | skill			| 			|  <p>Skill's skill.</p>							|
 | color			| 			|  <p>Skill's color.</p>							|
+
+# Statistic
+
+## Retrieve revenue
+
+
+
+	GET /statistics/revenue
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>Admin access_token.</p>							|
+| startDate			| Date			|  <p>Start date.</p>							|
+| endDate			| Date			|  <p>End date.</p>							|
+| unit			| String			| **optional** <p>Unit.</p>							|
 
 # User
 

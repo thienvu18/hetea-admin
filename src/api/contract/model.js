@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const status = ["created", "confirm", "done"];
+const status = ["created", "confirmed", "done"];
 
 const contractSchema = new Schema(
   {
@@ -20,6 +20,9 @@ const contractSchema = new Schema(
       type: Date
     },
     endDate: {
+      type: Date
+    },
+    paidDate: {
       type: Date
     },
     status: {
@@ -50,6 +53,7 @@ contractSchema.methods = {
       price: this.price,
       startDate: this.startDate,
       endDate: this.endDate,
+      paidDate: this.paidDate,
       status: this.status,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
