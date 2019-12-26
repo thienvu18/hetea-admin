@@ -5,6 +5,8 @@ export const revenue = ({ query }, res, next) => {
   const unit = query.unit;
   const startDate = Date.parse(query.startDate);
   const endDate = Date.parse(query.endDate);
+  const firstDayOfYear = new Date(startDate);
+  firstDayOfYear.setDate(1);
 
   let group = {};
   switch (unit) {
@@ -55,14 +57,17 @@ export const revenue = ({ query }, res, next) => {
     .exec()
     .then(data => {
       if (data && data.length != 0) {
-        return data.map(record => {
-          return {
-            id: record._id,
-            value: (record.value * 5) / 100
-          };
+        let res = {};
+        data.forEach(record => {
+          const date = new Date(
+            firstDayOfYear.setDate(record._id)
+          ).toISOString();
+
+          res[date] = (record.value * 5) / 100;
         });
+        return res;
       }
-      return [];
+      return {};
     })
     .then(success(res));
 };
