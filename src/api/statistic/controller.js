@@ -1,10 +1,10 @@
 import { success, notFound } from "../../services/response/";
 import { Contract } from "../contract";
 
-export const revenue = ({ body }, res, next) => {
-  const unit = body.unit;
-  const startDate = Date.parse(body.startDate);
-  const endDate = Date.parse(body.endDate);
+export const revenue = ({ query }, res, next) => {
+  const unit = query.unit;
+  const startDate = Date.parse(query.startDate);
+  const endDate = Date.parse(query.endDate);
 
   let group = {};
   switch (unit) {
@@ -67,9 +67,9 @@ export const revenue = ({ body }, res, next) => {
     .then(success(res));
 };
 
-export const topTutorRevenue = ({ body }, res, next) => {
-  const startDate = Date.parse(body.startDate);
-  const endDate = Date.parse(body.endDate);
+export const topTutorRevenue = ({ query }, res, next) => {
+  const startDate = Date.parse(query.startDate);
+  const endDate = Date.parse(query.endDate);
 
   Contract.aggregate([
     {
